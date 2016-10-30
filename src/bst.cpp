@@ -6,7 +6,7 @@
 *
 ************************/
 
-#include "bst.h"
+#include "./../lib/bst.h"
 #include <stdexcept>
 
 graeff_zachow::Node::Node(int value): value(value), left(new Bst()), right(new Bst()) {}
