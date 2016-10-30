@@ -1,24 +1,24 @@
 
-graeff_zachow::treeNode::treeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
+ed::treeNode::treeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
 
-graeff_zachow::treeNode::~treeNode(){
+ed::treeNode::~treeNode(){
 	delete left;
 	delete right;
 }
 
-int graeff_zachow::treeNode::getValue(){
+int ed::treeNode::getValue(){
 	return value;
 }
 
-graeff_zachow::Bst* graeff_zachow::treeNode::getLeft(){
+ed::Bst* ed::treeNode::getLeft(){
 	return left;
 }
 
-graeff_zachow::Bst* graeff_zachow::treeNode::getRight(){
+ed::Bst* ed::treeNode::getRight(){
 	return right;
 }
 
-void graeff_zachow::treeNode::insert(int value){
+void ed::treeNode::insert(int value){
 	if(value < this->value){
 		left->insert(value);
 	}else{
@@ -26,7 +26,7 @@ void graeff_zachow::treeNode::insert(int value){
 	}
 }
 
-bool graeff_zachow::treeNode::search(int value){
+bool ed::treeNode::search(int value){
 	if(value == this->value){
 		return true;
 	}else{
@@ -36,7 +36,7 @@ bool graeff_zachow::treeNode::search(int value){
 	}
 }
 
-int graeff_zachow::treeNode::getLevelOf(int value){
+int ed::treeNode::getLevelOf(int value){
 	if(value == this->value){
 		return 1;
 	}else{
