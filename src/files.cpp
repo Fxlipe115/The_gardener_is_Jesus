@@ -1,12 +1,23 @@
-#include "./../lib/bst.h"
+/*
+ *
+ * Arthur Zachow Coelho
+ *
+ * Felipe de Almeida Graeff
+ *
+ */
+
+//Bibliotecas padrão
 #include <fstream>
 #include <iostream>
 #include <string>
+//Bibliotecas feitas
+#include "./../lib/files.h"
+#include "./../lib/bst.h"
 
 using namespace std;
 
 template <class Tree>
-int readFile(string FILE_PATH, Tree *arv){
+int readFile(string FILE_PATH, Tree* arv){
     /*
      Lê o arquivo e já insere no tipo de árvore desejado.
      
@@ -17,10 +28,10 @@ int readFile(string FILE_PATH, Tree *arv){
         int = 0 - Sucesso;
               1 - Erro ao abrir arquivo;
      */
+
     ifstream arq(FILE_PATH);
     if(arq.is_open()){
         string file_content;
-
         //Itera por todas as linhas
         while(getline(arq, file_content)) 
             // Insere o valor na árvore
@@ -32,11 +43,10 @@ int readFile(string FILE_PATH, Tree *arv){
         return 1;
 }
 
+/*
 int main(void){
-    /*
-     Testing purposes.
-     */
-    string FILE_PATH = "./../files/sorted/n100sorted.txt";
+    //Testing purposes.
+    string FILE_PATH = "./../files/sorted/n10000sorted.txt";
     graeff_zachow::Bst abp;
 
     if(int erro = readFile<graeff_zachow::Bst>(FILE_PATH, &abp))
@@ -44,3 +54,4 @@ int main(void){
     else
         return 0;
 }
+*/
