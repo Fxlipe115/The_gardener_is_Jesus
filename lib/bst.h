@@ -10,7 +10,6 @@
 #define BST_H
 
 #include <string>
-#include <fstream>
 #include "treenode.h"
 
 namespace ed{
@@ -33,8 +32,6 @@ namespace ed{
 				int nodeCount();
 				int balanceFactor();
 		};
-
-		bool compare(Bst* tree1, Bst* tree2);
 
 }
 

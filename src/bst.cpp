@@ -7,6 +7,8 @@
 ************************/
 
 #include "bst.h"
+#include <string>
+#include <fstream>
 #include <stdexcept>
 
 ed::Bst::Bst(): node(nullptr) {}
