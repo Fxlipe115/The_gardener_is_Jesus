@@ -13,7 +13,7 @@
 #include <fstream>
 #include "treenode.h"
 
-namespace graeff_zachow{
+namespace ed{
 
 		class Bst{
 			private:

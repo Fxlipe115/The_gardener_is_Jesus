@@ -12,14 +12,14 @@
 ed::Bst::Bst(): node(nullptr) {}
 
 ed::Bst::Bst(std::string path): node(nullptr) {
-	ifstream arq(path);
+	std::ifstream arq(path);
 	
     if(arq.is_open()){
-        string file_content;
+        std::string file_content;
         //Itera por todas as linhas
-        while(getline(arq, file_content)) 
+        while(std::getline(arq, file_content)) 
             // Insere o valor na árvore
-            insert(stoi(file_content, nullptr, 10));
+            insert(std::stoi(file_content, nullptr, 10));
         arq.close();
 	}
 }
