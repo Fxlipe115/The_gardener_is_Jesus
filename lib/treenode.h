@@ -1,14 +1,15 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 
+#include "binarytree.h"
+
 namespace ed{
 
-		template <typename Tree>
 		class treeNode{
 			private:
 				int value;
-				Tree* left;
-				Tree* right;
+				binaryTree* left;
+				BinaryTree* right;
 				
 			public:
 				treeNode(int value);
