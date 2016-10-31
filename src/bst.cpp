@@ -11,26 +11,9 @@
 #include <fstream>
 #include <stdexcept>
 
-ed::Bst::Bst(): node(nullptr) {}
+ed::Bst::Bst(): BinaryTree() {}
 
-ed::Bst::Bst(std::string path): node(nullptr) {
-	std::ifstream arq(path);
-	
-    if(arq.is_open()){
-        std::string file_content;
-        //Itera por todas as linhas
-        while(std::getline(arq, file_content)) 
-            // Insere o valor na árvore
-            insert(std::stoi(file_content, nullptr, 10));
-        arq.close();
-	}
-}
-
-ed::Bst::~Bst(){
-	if(!isEmpty()){
-		delete node;
-	}
-}
+ed::Bst::Bst(std::string path): BinaryTree(path) {}
 
 void ed::Bst::insert(int value){
 	if(isEmpty()){

@@ -10,27 +10,16 @@
 #define BST_H
 
 #include <string>
+#include "binarytree.h"
 #include "treenode.h"
 
 namespace ed{
 
-		class Bst{
-			private:
-				treeNode<Bst>* node;
+		class Bst: public BinaryTree{
 			public:
 				Bst();
 				Bst(std::string path);
-				~Bst();				
-				int getValue();
-				Bst* getLeft();
-				Bst* getRight();
 				void insert(int value);
-				bool remove(int value);
-				bool search(int value);
-				bool isEmpty();
-				int height();
-				int nodeCount();
-				int balanceFactor();
 		};
 
 }
