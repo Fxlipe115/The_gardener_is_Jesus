@@ -9,44 +9,29 @@
 #ifndef BST_H
 #define BST_H
 
-namespace graeff_zachow{
+#include <string>
+#include "treenode.h"
 
-		class Node;
-		class Bst;
-
-		class Node{
-			private:
-				int value;
-				Bst* left;
-				Bst* right;
-			public:
-				Node(int value);
-				~Node();
-				int getValue();
-				Bst* getLeft();
-				Bst* getRight();
-				void insert(int value);
-				bool search(int value);
-				int getLevelOf(int value);
-		};
+namespace ed{
 
 		class Bst{
 			private:
-				Node* node;
+				treeNode<Bst>* node;
 			public:
 				Bst();
-				~Bst();
-				void insert(int value);
-				bool isEmpty();
+				Bst(std::string path);
+				~Bst();				
 				int getValue();
 				Bst* getLeft();
 				Bst* getRight();
+				void insert(int value);
+				bool remove(int value);
 				bool search(int value);
-				int getLevelOf(int value);
-				bool pathExists(int start, int end);
+				bool isEmpty();
+				int height();
+				int nodeCount();
+				int balanceFactor();
 		};
-
-		bool compare(Bst* tree1, Bst* tree2);
 
 }
 
