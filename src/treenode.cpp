@@ -26,6 +26,10 @@ void ed::treeNode::insert(int value){
 	}
 }
 
+bool ed::treeNode::remove(int value, Bst* parent){
+	//TODO
+}
+
 bool ed::treeNode::search(int value){
 	if(value == this->value){
 		return true;
@@ -36,12 +40,20 @@ bool ed::treeNode::search(int value){
 	}
 }
 
-int ed::treeNode::getLevelOf(int value){
-	if(value == this->value){
-		return 1;
-	}else{
-		return (value < this->value) ? 
-			1 + left->getLevelOf(value) :
-			1 + right->getLevelOf(value);
-	}
+int ed::treeNode::height(){
+	int lHeight = left->height();
+	int rHeight = right->height();
+	return (lHeight > rHeight) ?
+		lHeight :
+		rHeight;
+}
+
+int ed::treeNode::nodeCount(){
+	return left->nodeCount() + right->nodeCount();
+}
+
+int ed::treeNode::balanceFactor(){
+	int lHeight = left->height();
+	int rHeight = right->height();
+	return lHeight - rHeight;
 }

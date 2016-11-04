@@ -1,21 +1,28 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 
-#include "binarytree.h"
+#include "bst.h"
 
 namespace ed{
 
-		class treeNode{
-			private:
-				int value;
-				binaryTree* left;
-				BinaryTree* right;
-				
-			public:
-				treeNode(int value);
-				int getValue();
-				//TODO
-		};
+	class TreeNode{
+		private:
+			int value;
+			Bst* left;
+			Bst* right;
+			
+		public:
+			TreeNode(int value);
+			int getValue();
+			Bst* getLeft();
+			Bst* getRight();
+			void insert(int value);
+			bool remove(int value, Bst* parent = nullptr);
+			bool search(int value);
+			int height();
+			int nodeCount();
+			int balanceFactor();
+	};
 		
 }
 

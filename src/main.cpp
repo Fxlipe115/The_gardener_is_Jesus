@@ -14,7 +14,7 @@
 #endif
 
 
-#include "./../lib/bst.h"
+#include "bst.h"
 #include <iostream>
 #include <string>
 #include <stdexcept>
