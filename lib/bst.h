@@ -2,7 +2,6 @@
 #define BST_H
 
 #include <string>
-#include "binarytree.h"
 #include "treenode.h"
 
 namespace ed{
@@ -14,7 +13,7 @@ namespace ed{
 		public:
 			Bst();
 			Bst(std::string path);
-			~Bst();
+			virtual ~Bst();
 			int access();
 			Bst* leftTree();
 			Bst* rightTree();

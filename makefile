@@ -6,23 +6,23 @@
 #*
 #************************/
 
-CC=g++ -c
+CC=g++ -std=c++11 -c
 
 LINKER=g++
 
-FLAGS=-Wall -std=c++11 -I'include'
+CFLAGS=-Wall -I./lib
 
-SRC=$(wildcard src/*.c)
+SRC=$(wildcard src/*.cpp)
 
-OBJ=$(SRC:.c=.o)
+OBJ=$(addprefix bin/,$(notdir $(SRC:.cpp=.o)))
 
 EXEC=main
 
 all: $(OBJ)
-	$(LINKER) -o $(EXEC) $<
+	$(LINKER) -o $(EXEC) $^
 
-$(OBJ): $(SRC)
-	$(CC) -o $@ -c $< $(CFLAGS) 
+bin/%.o: src/%.cpp
+	$(CC) -o $@ $< $(CFLAGS) 
 
 clean:
-	rm 	src/*.o
+	rm 	bin/*.o

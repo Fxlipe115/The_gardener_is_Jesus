@@ -1,26 +1,26 @@
 #include "treenode.h"
 #include "bst.h"
 
-ed::treeNode::treeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
+ed::TreeNode::TreeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
 
-ed::treeNode::~treeNode(){
+ed::TreeNode::~TreeNode(){
 	delete left;
 	delete right;
 }
 
-int ed::treeNode::getValue(){
+int ed::TreeNode::getValue(){
 	return value;
 }
 
-ed::Bst* ed::treeNode::getLeft(){
+ed::Bst* ed::TreeNode::getLeft(){
 	return left;
 }
 
-ed::Bst* ed::treeNode::getRight(){
+ed::Bst* ed::TreeNode::getRight(){
 	return right;
 }
 
-void ed::treeNode::insert(int value){
+void ed::TreeNode::insert(int value){
 	if(value < this->value){
 		left->insert(value);
 	}else{
@@ -28,11 +28,12 @@ void ed::treeNode::insert(int value){
 	}
 }
 
-bool ed::treeNode::remove(int value, Bst* parent){
+bool ed::TreeNode::remove(int value, Bst* parent){
 	//TODO
+	return true;
 }
 
-bool ed::treeNode::search(int value){
+bool ed::TreeNode::search(int value){
 	if(value == this->value){
 		return true;
 	}else{
@@ -42,7 +43,7 @@ bool ed::treeNode::search(int value){
 	}
 }
 
-int ed::treeNode::height(){
+int ed::TreeNode::height(){
 	int lHeight = left->height();
 	int rHeight = right->height();
 	return (lHeight > rHeight) ?
@@ -50,11 +51,11 @@ int ed::treeNode::height(){
 		rHeight;
 }
 
-int ed::treeNode::nodeCount(){
+int ed::TreeNode::nodeCount(){
 	return left->nodeCount() + right->nodeCount();
 }
 
-int ed::treeNode::balanceFactor(){
+int ed::TreeNode::balanceFactor(){
 	int lHeight = left->height();
 	int rHeight = right->height();
 	return lHeight - rHeight;

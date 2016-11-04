@@ -24,14 +24,6 @@ ed::Bst::~Bst(){
 	}
 }
 
-void ed::Bst::insert(int value){
-	if(isEmpty()){
-		node = new Node(value);
-	}else{
-		node->insert(value);
-	}
-}
-
 int ed::Bst::access(){
 	if(!isEmpty())
 		return node->getValue();
@@ -40,7 +32,7 @@ int ed::Bst::access(){
 	}
 }
 
-Bst* ed::Bst::leftTree(){
+ed::Bst* ed::Bst::leftTree(){
 	if(!isEmpty())
 		return node->getLeft();
 	else{
@@ -48,7 +40,7 @@ Bst* ed::Bst::leftTree(){
 	}
 }
 
-Bst* ed::Bst::rightTree(){
+ed::Bst* ed::Bst::rightTree(){
 	if(!isEmpty())
 		return node->getRight();
 	else{
@@ -56,19 +48,20 @@ Bst* ed::Bst::rightTree(){
 	}
 }
 
-virtual void ed::Bst::insert(int value){
+void ed::Bst::insert(int value){
 	if(isEmpty()){
-		node = new Node(value);
+		node = new TreeNode(value);
 	}else{
 		node->insert(value);
 	}
 }
 
-virtual bool ed::Bst::remove(int value, Bst* parent){
+bool ed::Bst::remove(int value, Bst* parent){
 	//TODO
+	return true;
 }
 
-virtual bool ed::Bst::search(int value){
+bool ed::Bst::search(int value){
 	return isEmpty() ?
 		false :
 		node->search(value);

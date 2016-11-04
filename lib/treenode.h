@@ -1,9 +1,9 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 
-#include "bst.h"
-
 namespace ed{
+
+	class Bst;
 
 	class TreeNode{
 		private:
@@ -13,6 +13,7 @@ namespace ed{
 			
 		public:
 			TreeNode(int value);
+			virtual ~TreeNode();
 			int getValue();
 			Bst* getLeft();
 			Bst* getRight();
