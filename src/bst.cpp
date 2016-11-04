@@ -1,17 +1,9 @@
-/************************
-*
-*	Arthur Zachow Coelho
-*
-*	Felipe de Almeida Graeff
-*
-************************/
-
 #include "bst.h"
 #include <string>
 #include <fstream>
 #include <stdexcept>
 
-ed::Bst::Bst(): Bst() {}
+ed::Bst::Bst(): node(nullptr) {}
 
 ed::Bst::Bst(std::string path): node(nullptr) {
 	std::ifstream file(path);

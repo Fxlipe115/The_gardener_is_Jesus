@@ -1,3 +1,5 @@
+#include "treenode.h"
+#include "bst.h"
 
 ed::treeNode::treeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
 
