@@ -1,5 +1,6 @@
 #include "treenode.h"
 #include "bst.h"
+#include <omp.h>
 
 ed::TreeNode::TreeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
 
@@ -44,11 +45,16 @@ bool ed::TreeNode::search(int value){
 }
 
 int ed::TreeNode::height(){
-	int lHeight = left->height();
-	int rHeight = right->height();
-	return (lHeight > rHeight) ?
-		lHeight :
-		rHeight;
+	int lHeight = 0;
+	int rHeight = 0;
+	#pragma omp sections
+	{
+		#pragma omp section
+		lHeight = left->height();
+		#pragma omp section
+		rHeight = right->height();
+	}
+	return (lHeight > rHeight) ? lHeight : rHeight;
 }
 
 int ed::TreeNode::nodeCount(){
@@ -56,7 +62,14 @@ int ed::TreeNode::nodeCount(){
 }
 
 int ed::TreeNode::balanceFactor(){
-	int lHeight = left->height();
-	int rHeight = right->height();
+	int lHeight = 0;
+	int rHeight = 0;
+	#pragma omp sections
+	{
+		#pragma omp section
+		lHeight = left->height();
+		#pragma omp section
+		rHeight = right->height();
+	}
 	return lHeight - rHeight;
 }
