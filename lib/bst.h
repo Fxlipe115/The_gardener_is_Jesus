@@ -9,7 +9,9 @@ namespace ed{
 	class Bst{
 		protected:
 			TreeNode* node;
-			
+			void setLeftTree(Bst* tree);
+			void setRightTree(Bst* tree);
+
 		public:
 			Bst();
 			Bst(std::string path);
@@ -18,11 +20,12 @@ namespace ed{
 			Bst* leftTree();
 			Bst* rightTree();
 			virtual void insert(int value);
-			virtual bool remove(int value, Bst* parent = nullptr);
-			virtual bool search(int value);
+			virtual bool remove(int value)
+			virtual bool remove(Bst* parent);
+			virtual Bst* search(int value, Bst** parent = nullptr);
 			bool isEmpty();
-			int bigger();
-			int smaller();
+			Bst* bigger();
+			Bst* smaller();
 			int height();
 			int nodeCount();
 			int balanceFactor();
