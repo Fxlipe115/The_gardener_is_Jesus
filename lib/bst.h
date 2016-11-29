@@ -9,8 +9,7 @@ namespace ed{
 	class Bst{
 		protected:
 			TreeNode* node;
-			void setLeftTree(Bst* tree);
-			void setRightTree(Bst* tree);
+			void setValue(int value);
 
 		public:
 			Bst();

@@ -13,6 +13,10 @@ int ed::TreeNode::getValue(){
 	return value;
 }
 
+void ed::TreeNode::setValue(int value){
+	this->value = value;
+}
+
 ed::Bst* ed::TreeNode::getLeft(){
 	return left;
 }

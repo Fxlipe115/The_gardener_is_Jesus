@@ -15,6 +15,7 @@ namespace ed{
 			TreeNode(int value);
 			virtual ~TreeNode();
 			int getValue();
+			void setValue();
 			Bst* getLeft();
 			Bst* getRight();
 			void insert(int value);

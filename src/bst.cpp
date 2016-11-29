@@ -24,6 +24,10 @@ ed::Bst::~Bst(){
 	}
 }
 
+void ed::Bst::setValue(int value){
+	node->setValue(value);
+}
+
 int ed::Bst::access(){
 	if(!isEmpty())
 		return node->getValue();
@@ -60,6 +64,7 @@ bool ed::Bst::remove(int value){
 	Bst* parent = nullptr;
 	Bst* tree = search(value, &parent);
 
+	//if value was not found return false else remove node
 	return (tree == nullptr) ? false : tree->remove(parent);
 }
 
@@ -69,27 +74,31 @@ bool ed::Bst::remove(Bst* parent){
 
 	//children are both empty
 	if(lEmpty && rEmpty){
-		(parent->leftTree() == this) ?
-			parent->setLeftTree(nullptr) :
-			parent->setRightTree(nullptr);
+		if(parent != nullptr){
+			(parent->leftTree() == this) ?
+				parent->setLeftTree(nullptr) :
+				parent->setRightTree(nullptr);
+		}
 		delete this;
 
 	//left child empty
 	}else if(lEmpty && !rEmpty){
-		(parent->leftTree() == this) ?
-			parent->setLeftTree(rightTree()) :
-			parent->setRightTree(rightTree());
-
+		if(parent != nullptr){
+			(parent->leftTree() == this) ?
+				parent->setLeftTree(rightTree()) :
+				parent->setRightTree(rightTree());
+		}
 		setRightTree(nullptr);
 		delete this;
 
 	
 	//right child empty
 	}else if(!lEmpty && rEmpty){
-		(parent->leftTree() == this) ?
-			parent->setLeftTree(leftTree()) :
-			parent->setRightTree(leftTree());
-
+		if(parent != nullptr){
+			(parent->leftTree() == this) ?
+				parent->setLeftTree(leftTree()) :
+				parent->setRightTree(leftTree());
+		}
 		setLeftTree(nullptr);
 		delete this;
 
@@ -97,12 +106,9 @@ bool ed::Bst::remove(Bst* parent){
 	//neither child empty
 	}else if(!lEmpty && !rEmpty){
 		Bst* bigger = leftTree()->bigger();
-		bigger->setRightTree(rightTree());
-		setRightTree(nullptr);
-		(parent->leftTree() == this) ?
-			parent->setLeftTree(leftTree()) :
-			parent->setRightTree(leftTree());
-		//TODO
+		setValue(bigger->access());
+
+		return leftTree()->remove(bigger->access());
 	}
 	return true;
 }
