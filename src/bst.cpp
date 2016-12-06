@@ -28,6 +28,14 @@ void ed::Bst::setValue(int value){
 	node->setValue(value);
 }
 
+void ed::Bst::setLeftTree(Bst* tree){
+	this->node->setLeft(tree);
+}
+
+void ed::Bst::setRightTree(Bst* tree){
+	this->node->setRight(tree);
+}
+
 int ed::Bst::access(){
 	if(!isEmpty())
 		return node->getValue();
@@ -113,10 +121,10 @@ bool ed::Bst::remove(Bst* parent){
 	return true;
 }
 
-bool ed::Bst::search(int value){
+ed::Bst* ed::Bst::search(int value, Bst** parent){
 	return isEmpty() ?
-		false :
-		node->search(value);
+		nullptr :
+		node->search(value,this,parent);
 }
 
 
@@ -126,7 +134,7 @@ bool ed::Bst::isEmpty(){
 		false;
 }
 
-Bst* ed::Bst::bigger(){
+ed::Bst* ed::Bst::bigger(){
 	if(isEmpty()){
 		throw std::logic_error("Tree is empty");
 	}else if(rightTree()->isEmpty()){
@@ -136,7 +144,7 @@ Bst* ed::Bst::bigger(){
 	}
 }
 
-Bst* ed::Bst::smaller(){
+ed::Bst* ed::Bst::smaller(){
 	if(isEmpty()){
 		throw std::logic_error("Tree is empty");
 	}else if(leftTree()->isEmpty()){

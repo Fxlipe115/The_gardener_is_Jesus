@@ -15,12 +15,14 @@ namespace ed{
 			TreeNode(int value);
 			virtual ~TreeNode();
 			int getValue();
-			void setValue();
+			void setValue(int value);
 			Bst* getLeft();
+			void setLeft(Bst* tree);
 			Bst* getRight();
+			void setRight(Bst* tree);
 			void insert(int value);
 			bool remove(int value, Bst* parent = nullptr);
-			bool search(int value);
+			Bst* search(int value, Bst* tree, Bst** parent);
 			int height();
 			int nodeCount();
 			int balanceFactor();

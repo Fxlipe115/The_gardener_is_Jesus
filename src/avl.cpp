@@ -9,7 +9,12 @@ void ed::Avl::insert(int value){
 	//TODO
 }
 
-bool ed::Avl::remove(int value, Bst* parent){
+bool ed::Avl::remove(int value){
+	//TODO
+	return true;
+}
+
+bool ed::Avl::remove(Bst* parent){
 	//TODO
 	return true;
 }

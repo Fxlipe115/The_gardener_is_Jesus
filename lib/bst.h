@@ -10,6 +10,8 @@ namespace ed{
 		protected:
 			TreeNode* node;
 			void setValue(int value);
+			void setLeftTree(Bst* tree);
+			void setRightTree(Bst* tree);
 
 		public:
 			Bst();
@@ -19,7 +21,7 @@ namespace ed{
 			Bst* leftTree();
 			Bst* rightTree();
 			virtual void insert(int value);
-			virtual bool remove(int value)
+			virtual bool remove(int value);
 			virtual bool remove(Bst* parent);
 			virtual Bst* search(int value, Bst** parent = nullptr);
 			bool isEmpty();
