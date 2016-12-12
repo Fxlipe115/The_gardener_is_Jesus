@@ -1,20 +1,13 @@
 #include "avl.h"
 #include <string>
 
-ed::Avl::Avl(): Bst() {}
+ed::Avl::Avl(): Bst(), balanceFactor(0) {}
 
-ed::Avl::Avl(std::string path): Bst(path) {}
-
-void ed::Avl::insert(int value){
+void ed::Avl::insert(int value, Bst* parent){
 	//TODO
 }
 
-bool ed::Avl::remove(int value){
-	//TODO
-	return true;
-}
-
-bool ed::Avl::remove(Bst* parent){
+bool ed::Avl::remove(){
 	//TODO
 	return true;
 }

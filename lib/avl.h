@@ -12,10 +12,9 @@ namespace ed{
 			
 		public:
 			Avl();
-			Avl(std::string path);
-			void insert(int value) override;
-			bool remove(int value) override;
-			bool remove(Bst* parent) override;
+			void insert(int value, Bst* parent = nullptr) override;
+			bool remove() override;
+			void rotate();
 	};
 
 }

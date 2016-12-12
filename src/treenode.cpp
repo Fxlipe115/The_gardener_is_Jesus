@@ -33,24 +33,18 @@ void ed::TreeNode::setRight(Bst* tree){
 	this->right = tree;
 }
 
-void ed::TreeNode::insert(int value){
+void ed::TreeNode::insert(int value, ed::Bst* parent){
 	if(value < this->value){
-		left->insert(value);
+		left->insert(value, parent);
 	}else{
-		right->insert(value);
+		right->insert(value, parent);
 	}
 }
 
-bool ed::TreeNode::remove(int value, Bst* parent){
-	//TODO
-	return true;
-}
-
-ed::Bst* ed::TreeNode::search(int value, Bst* tree, Bst** parent){
+ed::Bst* ed::TreeNode::search(int value, Bst* tree){
 	if(value == this->value){
 		return tree;
 	}else{
-		*parent = tree;
 		return (value < this->value) ?
 			left->search(value) :
 			right->search(value);

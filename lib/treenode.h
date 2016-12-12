@@ -20,9 +20,8 @@ namespace ed{
 			void setLeft(Bst* tree);
 			Bst* getRight();
 			void setRight(Bst* tree);
-			void insert(int value);
-			bool remove(int value, Bst* parent = nullptr);
-			Bst* search(int value, Bst* tree, Bst** parent);
+			void insert(int value, Bst* parent);
+			Bst* search(int value, Bst* tree);
 			int height();
 			int nodeCount();
 			int balanceFactor();

@@ -24,6 +24,7 @@ all: $(OBJ)
 	$(LINKER) -o $(EXEC) $^ $(LFLAGS)
 
 bin/%.o: src/%.cpp
+	@mkdir -p bin
 	$(CC) -o $@ $< $(CFLAGS) 
 
 clean:

@@ -3,9 +3,9 @@
 #include <fstream>
 #include <stdexcept>
 
-ed::Bst::Bst(): node(nullptr) {}
+ed::Bst::Bst(): parent(nullptr), node(nullptr) {}
 
-ed::Bst::Bst(std::string path): node(nullptr) {
+ed::Bst::Bst(std::string path): parent(nullptr), node(nullptr) {
 	std::ifstream file(path);
 	
     if(file.is_open()){
@@ -28,12 +28,26 @@ void ed::Bst::setValue(int value){
 	node->setValue(value);
 }
 
-void ed::Bst::setLeftTree(Bst* tree){
+void ed::Bst::setLeftTree(Bst* tree, Bst* parent){
 	this->node->setLeft(tree);
+	if(!tree->isEmpty()){
+		tree->setParent(parent);
+	}
 }
 
-void ed::Bst::setRightTree(Bst* tree){
+void ed::Bst::setRightTree(Bst* tree, Bst* parent){
 	this->node->setRight(tree);
+	if(!tree->isEmpty()){
+		tree->setParent(parent);
+	}
+}
+
+void ed::Bst::setParent(Bst* parent){
+	this->parent = parent;
+}
+
+ed::Bst* ed::Bst::getParent(){
+	return parent;
 }
 
 int ed::Bst::access(){
@@ -60,23 +74,23 @@ ed::Bst* ed::Bst::rightTree(){
 	}
 }
 
-void ed::Bst::insert(int value){
+void ed::Bst::insert(int value, Bst* parent){
 	if(isEmpty()){
 		node = new TreeNode(value);
+		this->parent = parent;
 	}else{
-		node->insert(value);
+		node->insert(value, this);
 	}
 }
 
 bool ed::Bst::remove(int value){
-	Bst* parent = nullptr;
-	Bst* tree = search(value, &parent);
+	Bst* tree = search(value);
 
 	//if value was not found return false else remove node
-	return (tree == nullptr) ? false : tree->remove(parent);
+	return (tree == nullptr) ? false : tree->remove();
 }
 
-bool ed::Bst::remove(Bst* parent){
+bool ed::Bst::remove(){
 	bool lEmpty = leftTree()->isEmpty();
 	bool rEmpty = rightTree()->isEmpty();
 
@@ -93,8 +107,8 @@ bool ed::Bst::remove(Bst* parent){
 	}else if(lEmpty && !rEmpty){
 		if(parent != nullptr){
 			(parent->leftTree() == this) ?
-				parent->setLeftTree(rightTree()) :
-				parent->setRightTree(rightTree());
+				parent->setLeftTree(rightTree(), parent) :
+				parent->setRightTree(rightTree(), parent);
 		}
 		setRightTree(nullptr);
 		delete this;
@@ -104,8 +118,8 @@ bool ed::Bst::remove(Bst* parent){
 	}else if(!lEmpty && rEmpty){
 		if(parent != nullptr){
 			(parent->leftTree() == this) ?
-				parent->setLeftTree(leftTree()) :
-				parent->setRightTree(leftTree());
+				parent->setLeftTree(leftTree(), parent) :
+				parent->setRightTree(leftTree(), parent);
 		}
 		setLeftTree(nullptr);
 		delete this;
@@ -121,10 +135,10 @@ bool ed::Bst::remove(Bst* parent){
 	return true;
 }
 
-ed::Bst* ed::Bst::search(int value, Bst** parent){
+ed::Bst* ed::Bst::search(int value){
 	return isEmpty() ?
 		nullptr :
-		node->search(value,this,parent);
+		node->search(value,this);
 }
 
 
