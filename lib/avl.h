@@ -13,8 +13,13 @@ namespace ed{
 		public:
 			Avl();
 			void insert(int value, Bst* parent = nullptr) override;
+			bool remove(int value) override;
 			bool remove() override;
 			void rotate();
+			void rotateRR();
+			void rotateLL();
+			void rotateRL();
+			void rotateLR();
 	};
 
 }
