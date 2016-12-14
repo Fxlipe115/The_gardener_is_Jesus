@@ -9,7 +9,7 @@ namespace ed{
 	class Bst{
 		protected:
 			Bst* parent;
-			TreeNode* node;
+			TreeNode<Bst>* node;
 			void setValue(int value);
 			void setLeftTree(Bst* tree, Bst* parent = nullptr);
 			void setRightTree(Bst* tree, Bst* parent = nullptr);
@@ -25,7 +25,7 @@ namespace ed{
 			Bst* rightTree();
 			virtual void insert(int value, Bst* parent = nullptr, int* rotations = nullptr, int* comparisons = nullptr);
 			virtual bool remove(int value, int* rotations = nullptr, int* comparisons = nullptr);
-			virtual bool remove(int* rotations = nullptr, int* comparisons = nullptr);
+			bool remove(int* rotations = nullptr, int* comparisons = nullptr);
 			virtual Bst* search(int value, int* comparisons = nullptr);
 			bool isEmpty();
 			Bst* bigger();

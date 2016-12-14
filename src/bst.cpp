@@ -76,7 +76,7 @@ ed::Bst* ed::Bst::rightTree(){
 
 void ed::Bst::insert(int value, Bst* parent, int* rotations, int* comparisons){
 	if(isEmpty()){
-		node = new TreeNode(value);
+		node = new TreeNode<Bst>(value);
 		this->parent = parent;
 	}else{
 		node->insert(value, this, rotations, comparisons);

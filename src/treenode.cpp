@@ -1,57 +1,71 @@
 #include "treenode.h"
-#include "bst.h"
 #include <omp.h>
 
-ed::TreeNode::TreeNode(int value): value(value), left(new Bst()), right(new Bst()) {}
+template <class Tree>
+ed::TreeNode<Tree>::TreeNode(int value): value(value), left(new Tree()), right(new Tree()) {}
 
-ed::TreeNode::~TreeNode(){
+template <class Tree>
+ed::TreeNode<Tree>::~TreeNode(){
 	delete left;
 	delete right;
 }
 
-int ed::TreeNode::getValue(){
+template <class Tree>
+int ed::TreeNode<Tree>::getValue(){
 	return value;
 }
 
-void ed::TreeNode::setValue(int value){
+template <class Tree>
+void ed::TreeNode<Tree>::setValue(int value){
 	this->value = value;
 }
 
-ed::Bst* ed::TreeNode::getLeft(){
+template <class Tree>
+Tree* ed::TreeNode<Tree>::getLeft(){
 	return left;
 }
 
-void ed::TreeNode::setLeft(Bst* tree){
+template <class Tree>
+void ed::TreeNode<Tree>::setLeft(Tree* tree){
 	this->left = tree;
 }
 
-ed::Bst* ed::TreeNode::getRight(){
+template <class Tree>
+Tree* ed::TreeNode<Tree>::getRight(){
 	return right;
 }
 
-void ed::TreeNode::setRight(Bst* tree){
+template <class Tree>
+void ed::TreeNode<Tree>::setRight(Tree* tree){
 	this->right = tree;
 }
 
-void ed::TreeNode::insert(int value, ed::Bst* parent){
+template <class Tree>
+void ed::TreeNode<Tree>::insert(int value, Tree* parent, int* rotations, int* comparisons){
+	if(comparisons != nullptr)
+		*comparisons += 1;
 	if(value < this->value){
-		left->insert(value, parent);
+		left->insert(value, parent, rotations, comparisons);
 	}else{
-		right->insert(value, parent);
+		right->insert(value, parent, rotations, comparisons);
 	}
 }
 
-ed::Bst* ed::TreeNode::search(int value, Bst* tree){
+template <class Tree>
+Tree* ed::TreeNode<Tree>::search(int value, Tree* tree, int* comparisons){
 	if(value == this->value){
 		return tree;
 	}else{
+		if(comparisons != nullptr)
+			*comparisons += 1;
 		return (value < this->value) ?
-			left->search(value) :
-			right->search(value);
+			left->search(value, comparisons) :
+			right->search(value, comparisons);
 	}
 }
 
-int ed::TreeNode::height(){
+template <class Tree>
+int ed::TreeNode<Tree>::height(){
 	int lHeight = 0;
 	int rHeight = 0;
 	#pragma omp sections
@@ -64,11 +78,13 @@ int ed::TreeNode::height(){
 	return (lHeight > rHeight) ? lHeight : rHeight;
 }
 
-int ed::TreeNode::nodeCount(){
+template <class Tree>
+int ed::TreeNode<Tree>::nodeCount(){
 	return left->nodeCount() + right->nodeCount();
 }
 
-int ed::TreeNode::balanceFactor(){
+template <class Tree>
+int ed::TreeNode<Tree>::balanceFactor(){
 	int lHeight = 0;
 	int rHeight = 0;
 	#pragma omp sections

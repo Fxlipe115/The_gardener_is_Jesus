@@ -3,25 +3,24 @@
 
 namespace ed{
 
-	class Bst;
-
+	template <class Tree>
 	class TreeNode{
 		private:
 			int value;
-			Bst* left;
-			Bst* right;
+			Tree* left;
+			Tree* right;
 			
 		public:
 			TreeNode(int value);
 			virtual ~TreeNode();
 			int getValue();
 			void setValue(int value);
-			Bst* getLeft();
-			void setLeft(Bst* tree);
-			Bst* getRight();
-			void setRight(Bst* tree);
-			void insert(int value, Bst* parent);
-			Bst* search(int value, Bst* tree);
+			Tree* getLeft();
+			void setLeft(Tree* tree);
+			Tree* getRight();
+			void setRight(Tree* tree);
+			void insert(int value, Tree* parent, int* rotations = nullptr, int* comparisons = nullptr);
+			Tree* search(int value, Tree* tree, int* comparisons = nullptr);
 			int height();
 			int nodeCount();
 			int balanceFactor();
