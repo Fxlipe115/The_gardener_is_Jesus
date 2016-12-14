@@ -74,23 +74,23 @@ ed::Bst* ed::Bst::rightTree(){
 	}
 }
 
-void ed::Bst::insert(int value, Bst* parent){
+void ed::Bst::insert(int value, Bst* parent, int* rotations, int* comparisons){
 	if(isEmpty()){
 		node = new TreeNode(value);
 		this->parent = parent;
 	}else{
-		node->insert(value, this);
+		node->insert(value, this, rotations, comparisons);
 	}
 }
 
-bool ed::Bst::remove(int value){
-	Bst* tree = search(value);
+bool ed::Bst::remove(int value, int* rotations, int* comparisons){
+	Bst* tree = search(value, comparisons);
 
 	//if value was not found return false else remove node
-	return (tree == nullptr) ? false : tree->remove();
+	return (tree == nullptr) ? false : tree->remove(rotations, comparisons);
 }
 
-bool ed::Bst::remove(){
+bool ed::Bst::remove(int* rotations, int* comparisons){
 	bool lEmpty = leftTree()->isEmpty();
 	bool rEmpty = rightTree()->isEmpty();
 
@@ -98,10 +98,10 @@ bool ed::Bst::remove(){
 	if(lEmpty && rEmpty){
 		if(parent != nullptr){
 			(parent->leftTree() == this) ?
-				parent->setLeftTree(nullptr) :
-				parent->setRightTree(nullptr);
+				parent->setLeftTree(new Bst()) :
+				parent->setRightTree(new Bst());
 		}
-		delete this;
+		delete this->node;
 
 	//left child empty
 	}else if(lEmpty && !rEmpty){
@@ -110,8 +110,8 @@ bool ed::Bst::remove(){
 				parent->setLeftTree(rightTree(), parent) :
 				parent->setRightTree(rightTree(), parent);
 		}
-		setRightTree(nullptr);
-		delete this;
+		setRightTree(new Bst());
+		delete this->node;
 
 	
 	//right child empty
@@ -121,7 +121,7 @@ bool ed::Bst::remove(){
 				parent->setLeftTree(leftTree(), parent) :
 				parent->setRightTree(leftTree(), parent);
 		}
-		setLeftTree(nullptr);
+		setLeftTree(new Bst());
 		delete this;
 
 	
@@ -130,15 +130,15 @@ bool ed::Bst::remove(){
 		Bst* bigger = leftTree()->bigger();
 		setValue(bigger->access());
 
-		return leftTree()->remove(bigger->access());
+		return leftTree()->remove(bigger->access(), rotations, comparisons);
 	}
 	return true;
 }
 
-ed::Bst* ed::Bst::search(int value){
+ed::Bst* ed::Bst::search(int value, int* comparisons){
 	return isEmpty() ?
 		nullptr :
-		node->search(value,this);
+		node->search(value,this, comparisons);
 }
 
 
@@ -180,7 +180,7 @@ int ed::Bst::nodeCount(){
 		1 + node->nodeCount();
 }
 
-int ed::Bst::balanceFactor(){
+int ed::Bst::getBalanceFactor(){
 	return isEmpty() ?
 		0 :
 		node->balanceFactor();

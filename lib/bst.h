@@ -23,16 +23,16 @@ namespace ed{
 			int access();
 			Bst* leftTree();
 			Bst* rightTree();
-			virtual void insert(int value, Bst* parent = nullptr);
-			virtual bool remove(int value);
-			virtual bool remove();
-			virtual Bst* search(int value);
+			virtual void insert(int value, Bst* parent = nullptr, int* rotations = nullptr, int* comparisons = nullptr);
+			virtual bool remove(int value, int* rotations = nullptr, int* comparisons = nullptr);
+			virtual bool remove(int* rotations = nullptr, int* comparisons = nullptr);
+			virtual Bst* search(int value, int* comparisons = nullptr);
 			bool isEmpty();
 			Bst* bigger();
 			Bst* smaller();
 			int height();
 			int nodeCount();
-			int balanceFactor();
+			int getBalanceFactor();
 	};
 
 }
