@@ -61,6 +61,12 @@ bool ed::Avl::remove(int value, int* rotations, int* comparisons){
 	return true;
 }
 
+ed::Avl* ed::Avl::search(int value, int* comparisons){
+	return isEmpty() ?
+		nullptr :
+		node->search(value,this, comparisons);
+}
+
 void ed::Avl::rotateR(){
 
 }

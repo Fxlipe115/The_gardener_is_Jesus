@@ -25,7 +25,7 @@ namespace ed{
 			int nodeCount();
 			int balanceFactor();
 	};
-		
+			
 }
 
 #endif

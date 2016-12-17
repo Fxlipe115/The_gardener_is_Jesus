@@ -1,4 +1,6 @@
 #include "treenode.h"
+#include "bst.h"
+#include "avl.h"
 #include <omp.h>
 
 template <class Tree>
@@ -96,3 +98,11 @@ int ed::TreeNode<Tree>::balanceFactor(){
 	}
 	return lHeight - rHeight;
 }
+
+template class ed::TreeNode<ed::Avl>;
+template class ed::TreeNode<ed::Bst>;
+
+//void __aux(){
+//	ed::TreeNode<ed::Avl> node2(1);
+//	ed::TreeNode<ed::Bst> node1(1);
+//}
