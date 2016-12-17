@@ -16,8 +16,8 @@ namespace ed{
 			void insert(int value, Bst* parent = nullptr, int* rotations = nullptr, int* comparisons = nullptr) override;
 			bool remove(int value, int* rotations = nullptr, int* comparisons = nullptr) override;
 			Avl* search(int value, int* comparisons = nullptr);
-			void rotateR();
-			void rotateL();
+			Avl* rotateR();
+			Avl* rotateL();
 	};
 
 }
