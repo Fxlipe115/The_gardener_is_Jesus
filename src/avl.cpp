@@ -68,15 +68,15 @@ ed::Avl* ed::Avl::search(int value, int* comparisons){
 }
 
 ed::Avl* ed::Avl::rotateR(){
-	Avl* x = this->node->left();
-    Avl* T2 = x->->node->right();
+	Avl* x = this->node->getLeft();
+    Avl* T2 = x->node->getRight();
  
     // Perform rotation
-    x->node->setRight(y);
-    y->node->setLeft(T2);
+    x->node->setRight(this);
+    this->node->setLeft(T2);
  
     // Update balance
-    y->balanceFactor = y->getBalanceFactor();
+    this->balanceFactor = this->getBalanceFactor();
     x->balanceFactor = x->getBalanceFactor();
  
     // Return new root
@@ -84,16 +84,16 @@ ed::Avl* ed::Avl::rotateR(){
 }
 
 ed::Avl* ed::Avl::rotateL(){
-	Avl* y = this->node->right();
-    Avl* T2 = y->node->left();
+	Avl* y = this->node->getRight();
+    Avl* T2 = y->node->getLeft();
  
     // Perform rotation
-    y->node->left = x;
-    x->node->right = T2;
+    y->node->setLeft(this);
+    this->node->setRight(T2);
  
     // Update balance
     y->balanceFactor = y->getBalanceFactor();
-    x->balanceFactor = x->getBalanceFactor();
+    this->balanceFactor = this->getBalanceFactor();
  
     // Return new root
     return y;
