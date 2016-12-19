@@ -21,11 +21,15 @@
 #include <string>
 #include <stdexcept>
 #include <cstdlib>
+#include "roteiro.h"
 
 using namespace ed;
 
 int main(int argc, char** argv){
-	Bst bst;
+	Roteiro roteiro(argv[1]);
+	roteiro.executar();
+
+	/*Bst bst;
 	int comparacoes = 0;
 	int rotacoes = 0;
 
@@ -57,7 +61,7 @@ int main(int argc, char** argv){
 	
 	std::cout << bst.nodeCount() << "\n";
 	std::cout << comparacoes << "\n";
-	std::cout << rotacoes << "\n";
+	std::cout << rotacoes << "\n";*/
 
 	return 0;
 }  
