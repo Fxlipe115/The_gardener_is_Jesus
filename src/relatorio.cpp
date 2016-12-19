@@ -2,13 +2,12 @@
 #include <fstream>
 #include <string>
 
-ed::Relatorio::Relatorio(): tree(""), operacao(""), tempo(0), nodos(0), 
-			altura(0), fator(0), 
-			comparacoes(0), rotacoes(0) {}
+ed::Relatorio::Relatorio(std::string tree, std::string operacao, int tempo, int nodos, int altura, int fator, int comparacoes, int rotacoes): tree(tree), operacao(operacao), tempo(tempo), nodos(nodos), altura(altura), fator(fator), comparacoes(comparacoes), rotacoes(rotacoes) {}
 
 bool ed::Relatorio::save(){
 	std::string path = "relatorio";
-	path << tree << ".txt";
+	path += tree;
+	path += ".txt";
 
 	std::ofstream file(path);
 

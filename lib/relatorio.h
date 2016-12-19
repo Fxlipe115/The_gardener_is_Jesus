@@ -8,7 +8,7 @@ namespace ed{
 	class Relatorio{
 		private:
 			std::string tree;
-			srd::string operacao;
+			std::string operacao;
 			int tempo;
 			int nodos;
 			int altura;
@@ -17,7 +17,7 @@ namespace ed{
 			int rotacoes;
 
 		public:
-			Relatorio();
+			Relatorio(std::string tree, std::string operacao, int tempo, int nodos, int altura, int fator, int comparacoes, int rotacoes);
 			void setTempo(int tempo);
 			int getTempo();
 			void setNodos(int nodos);

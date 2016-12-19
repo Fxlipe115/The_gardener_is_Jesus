@@ -1,4 +1,6 @@
+#include "bst.h"
 #include "avl.h"
+#include "relatorio.h"
 #include "roteiro.h"
 #include <stdexcept>
 #include <time.h>
@@ -19,9 +21,11 @@ void ed::Roteiro::executar(){
 	std::string comando;
 	int comparacoesBst = 0, comparacoesAvl = 0, rotacoes = 0;
 	clock_t start, end, elapsed;
+	std::string operacao;
 
 	while(roteiro >> comando){
 		if(comando.compare("I")){
+			operacao = "Inclusao";
 			comparacoesBst = 0;
 			comparacoesAvl = 0;
 			rotacoes = 0;
@@ -47,10 +51,11 @@ void ed::Roteiro::executar(){
 			}
 
 		}else if(comando.compare("C")){
+			operacao = "Consulta";
 			comparacoesBst = 0;
 			comparacoesAvl = 0;
 			rotacoes = 0;
-			
+		
 			//pega nome do arquivo
 			std::string arquivo;
 			roteiro >> arquivo;
@@ -72,6 +77,7 @@ void ed::Roteiro::executar(){
 			}
 			
 		}else if(comando.compare("R")){
+			operacao = "Remocao";
 			comparacoesBst = 0;
 			comparacoesAvl = 0;
 			rotacoes = 0;
@@ -97,8 +103,8 @@ void ed::Roteiro::executar(){
 			}
 			
 		}else if(comando.compare("E")){
-			Relatorio relatorioAbp("ABP", elapsed, bst.nodeCount(), bst.height(), bst.getBalanceFactor(), comparacoesBst, 0);
-			Relatorio relatorioAvl("AVL", elapsed, avl.nodeCount(), avl.height(), avl.getBalanceFactor(), comparacoesAvl, rotacoes);
+			ed::Relatorio relatorioAbp("ABP", operacao, elapsed, bst.nodeCount(), bst.height(), bst.getBalanceFactor(), comparacoesBst, 0);
+			ed::Relatorio relatorioAvl("AVL", operacao, elapsed, avl.nodeCount(), avl.height(), avl.getBalanceFactor(), comparacoesAvl, rotacoes);
 			relatorioAbp.save();
 			relatorioAvl.save();
 		}
