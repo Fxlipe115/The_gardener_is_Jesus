@@ -1,10 +1,14 @@
 #ifndef RELATORIO_H
 #define RELATORIO_H
 
+#include <string>
+
 namespace ed{
 
 	class Relatorio{
 		private:
+			std::string tree;
+			srd::string operacao;
 			int tempo;
 			int nodos;
 			int altura;
@@ -27,6 +31,7 @@ namespace ed{
 			void setRotacoes(int rotacoes);
 			int getRotacoes();
 			void print();
+			bool save();
 	};
 }
 
