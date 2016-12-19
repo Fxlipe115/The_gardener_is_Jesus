@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <time.h>
 
-ed::Roteiro::Roteiro(const std::string caminho) ed::Avl(ed::Avl()) ed::Bst(ed::Bst()){
+ed::Roteiro::Roteiro(const std::string caminho): avl(ed::Avl()), bst(ed::Bst()){
 	try{
 		roteiro.open(caminho);
 	}catch(...){
