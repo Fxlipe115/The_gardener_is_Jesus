@@ -1,8 +1,9 @@
+#include "avl.h"
 #include "roteiro.h"
 #include <stdexcept>
 #include <time.h>
 
-ed::Roteiro::Roteiro(const std::string caminho) Abp(Abp()) Avl(Avl()) {
+ed::Roteiro::Roteiro(const std::string caminho) ed::Avl(ed::Avl()) ed::Bst(ed::Bst()){
 	try{
 		roteiro.open(caminho);
 	}catch(...){
@@ -18,7 +19,7 @@ void ed::Roteiro::executar(){
 	std::string comando;
 	int comparacoesBst = 0, comparacoesAvl = 0, rotacoes = 0;
 	clock_t start, end, elapsed;
-	
+
 	while(roteiro >> comando){
 		if(comando.compare("I")){
 			comparacoesBst = 0;
@@ -28,9 +29,9 @@ void ed::Roteiro::executar(){
 			//pega nome do arquivo
 			std::string arquivo;
 			roteiro >> arquivo;
-			
+
 			std::ifstream file(arquivo);
-	
+
 			if(file.is_open()){
 				std::string file_content;
 				start = clock();
@@ -44,7 +45,7 @@ void ed::Roteiro::executar(){
 				file.close();	
 				elapsed = 1000 * (end - start) / (CLOCKS_PER_SEC);
 			}
-			
+
 		}else if(comando.compare("C")){
 			comparacoesBst = 0;
 			comparacoesAvl = 0;
