@@ -30,16 +30,12 @@ void ed::Bst::setValue(int value){
 
 void ed::Bst::setLeftTree(Bst* tree, Bst* parent){
 	this->node->setLeft(tree);
-	if(!tree->isEmpty()){
-		tree->setParent(parent);
-	}
+	tree->setParent(parent);
 }
 
 void ed::Bst::setRightTree(Bst* tree, Bst* parent){
 	this->node->setRight(tree);
-	if(!tree->isEmpty()){
-		tree->setParent(parent);
-	}
+	tree->setParent(parent);
 }
 
 void ed::Bst::setParent(Bst* parent){
@@ -98,8 +94,8 @@ bool ed::Bst::remove(int* rotations, int* comparisons){
 	if(lEmpty && rEmpty){
 		if(parent != nullptr){
 			(parent->leftTree() == this) ?
-				parent->setLeftTree(new Bst()) :
-				parent->setRightTree(new Bst());
+				parent->setLeftTree(new Bst(), parent) :
+				parent->setRightTree(new Bst(), parent);
 		}
 		delete this->node;
 
