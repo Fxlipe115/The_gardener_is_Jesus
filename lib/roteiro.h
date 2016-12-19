@@ -9,12 +9,13 @@ namespace ed{
 	class Roteiro{
 		private:
 			ifstream roteiro;
+			Bst bst;
+			Avl avl;
 		
 		public:
 			Roteiro(const std::string caminho);
 			~Roteiro();
-			bool executar();
-			bool proxima();
+			void executar();
 	};
 
 }
